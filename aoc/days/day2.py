@@ -49,4 +49,3 @@ class Day2(Day):
         return sum(SCORE[opponent][STRAT[opponent][strat]]
                    for opponent, strat in (line.split()
                                            for line in self.lines))
-
