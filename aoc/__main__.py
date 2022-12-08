@@ -1,6 +1,7 @@
 import argparse
 
 from aoc.days import DAYS
+from aoc.util import time_method
 
 
 parser = argparse.ArgumentParser(prog="aoc2022")
@@ -18,6 +19,8 @@ day = DAYS[args.day_number](test)
 
 print(f"Running day {args.day_number}.")
 if 1 in args.parts:
-    print(f"Part 1: {day.part1()}")
+    ans, t = time_method(day.part1)
+    print(f"Part 1: {ans}, took {t:.5f} s")
 if 2 in args.parts:
-    print(f"Part 2: {day.part2()}")
+    ans, t = time_method(day.part2)
+    print(f"Part 2: {ans}, took {t:.5f} s")
