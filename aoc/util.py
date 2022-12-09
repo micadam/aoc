@@ -1,4 +1,5 @@
 import time
+from dataclasses import dataclass
 from typing import Callable
 
 
@@ -34,3 +35,35 @@ def time_method(method, *args, **kwargs):
     ret = method(*args, **kwargs)
     t = time.time() - start
     return ret, t
+
+
+@dataclass
+class Pos:
+    x: int
+    y: int
+
+    def binary_dir(self):
+        """
+        Returns the one of the 9 directions formed from ((-1|0|1), (-1|0|1)),
+        that is closest to this vector.
+        """
+        dx = self.x / abs(self.x) if self.x else 0
+        dy = self.y / abs(self.y) if self.y else 0
+
+        return Pos(dx, dy)
+
+    def __add__(self, other: 'Pos'):
+        return Pos(self.x + other.x,
+                   self.y + other.y)
+
+    def __sub__(self, other: 'Pos'):
+        return Pos(self.x - other.x,
+                   self.y - other.y)
+
+    def __hash__(self) -> int:
+        return hash((self.x, self.y))
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Pos):
+            return False
+        return self.x == other.x and self.y == other.y
