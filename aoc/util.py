@@ -30,6 +30,13 @@ def get_grid_iter(Y: int, X: int, row_first: bool,
             yield (a, b) if row_first else (b, a)
 
 
+def get_grid_neighbours(Y, X, y, x):
+    for dy, dx in [(0, -1), (0, 1), (1, 0), (-1, 0)]:
+        ny, nx = y + dy, x + dx
+        if 0 <= ny < Y and 0 <= nx < X:
+            yield ny, nx
+
+
 def time_method(method, *args, **kwargs):
     start = time.time()
     ret = method(*args, **kwargs)
