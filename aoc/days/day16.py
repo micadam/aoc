@@ -1,4 +1,4 @@
-from collections import deque
+from collections import defaultdict
 from functools import cache
 from itertools import product
 
@@ -15,22 +15,19 @@ class Day16(Day):
             name = segments[1]
             self.pressure[name] = int(segments[4].split("=")[1][:-1])
             self.dests[name] = [s.replace(',', '') for s in segments[9:]]
-        self.costs = {}
-        # BFS from every node to find travel times
-        # This should be the Floyd-Warshall algorithm
-        # but I didn't remember it at 5 AM
+        self.costs = defaultdict(lambda: defaultdict(lambda: float('inf')))
+        # The Floyd-Warshall algorithm adapted from
+        # https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
+        vertex_list = list(self.dests)
         for valve, dest in self.dests.items():
-            visited = set()
-            to_visit = deque([(d, 1) for d in dest])
-            self.costs[valve] = {}
-            while to_visit:
-                d, cost = to_visit.popleft()
-                if d in visited:
-                    continue
-                visited.add(d)
-                self.costs[valve][d] = cost
-                to_visit.extend((new_d, cost + 1)
-                                for new_d in self.dests[d])
+            for d in dest:
+                self.costs[valve][d] = 1
+            self.costs[valve][valve] = 0
+        for k in vertex_list:
+            for i in vertex_list:
+                for j in vertex_list:
+                    if self.costs[i][j] > self.costs[i][k] + self.costs[k][j]:
+                        self.costs[i][j] = self.costs[i][k] + self.costs[k][j]
         self.active_valves = frozenset(valve for valve, p
                                        in self.pressure.items() if p)
 
