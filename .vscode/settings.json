@@ -4,5 +4,6 @@
     "editor.trimAutoWhitespace": true,
     "editor.renderWhitespace": "all",
     "files.trimTrailingWhitespace": true,
-    "python.analysis.typeCheckingMode": "basic"
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.indexing": true
 }
