@@ -25,6 +25,7 @@ from aoc.days.day21 import Day21
 from aoc.days.day22 import Day22
 from aoc.days.day23 import Day23
 from aoc.days.day24 import Day24
+from aoc.days.day25 import Day25
 
 DAYS: Dict[int, Type[Day]] = {
     1: Day1,
@@ -51,6 +52,7 @@ DAYS: Dict[int, Type[Day]] = {
     22: Day22,
     23: Day23,
     24: Day24,
+    25: Day25,
 }
 
 __all__ = ['DAYS']
