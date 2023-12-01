@@ -10,8 +10,14 @@ pub struct DayPack {
 }
 
 impl DayPack {
-    pub fn read_lines(&self, day_name: &String) -> Vec<String> {
-        let path = format!("./input/{}/{}.txt", &self.name, day_name);
+    pub fn read_lines(&self, day_name: &String, test: bool) -> Vec<String> {
+        let path = format!(
+            "./input/{}/{}{}.txt",
+            &self.name,
+            day_name,
+            if test { ".test" } else { "" }
+        );
+        println!("Reading from {}", path);
         std::fs::read_to_string(path)
             .unwrap_or_else(|_| {
                 println!("File not found, defaulting to empty");
