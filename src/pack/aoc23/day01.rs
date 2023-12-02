@@ -29,7 +29,7 @@ fn contract_digits(line: &String) -> String {
     ]);
     spelled_out
         .iter()
-        .for_each(|(k, v)| {line = line.replace(k, v)});
+        .for_each(|(k, v)| line = line.replace(k, v));
     line
 }
 

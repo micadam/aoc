@@ -84,11 +84,20 @@ impl Solveable for Part2 {
             .collect::<Vec<Game>>();
         games
             .iter()
-            .map(|g| g.subsets.iter().fold(Subset { red: 0, blue: 0, green: 0 }, |acc, s| Subset {
-                red: max(acc.red, s.red),
-                blue: max(acc.blue, s.blue),
-                green: max(acc.green, s.green),
-            }))
+            .map(|g| {
+                g.subsets.iter().fold(
+                    Subset {
+                        red: 0,
+                        blue: 0,
+                        green: 0,
+                    },
+                    |acc, s| Subset {
+                        red: max(acc.red, s.red),
+                        blue: max(acc.blue, s.blue),
+                        green: max(acc.green, s.green),
+                    },
+                )
+            })
             .map(|s| s.power())
             .sum::<i32>()
             .to_string()
