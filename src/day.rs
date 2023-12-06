@@ -34,10 +34,13 @@ fn timed_solve(
 }
 
 impl Day {
-    pub fn solve(&self, lines_factory: &dyn Fn(&String) -> Vec<String>) {
+    pub fn solve(&self, lines_factory: &dyn Fn(&String) -> Vec<String>, censor: &bool) {
         let lines = lines_factory(&self.name);
         self.parts.iter().enumerate().for_each(|(idx, part)| {
-            let (ans, time) = timed_solve(part, &lines);
+            let (mut ans, time) = timed_solve(part, &lines);
+            if *censor {
+                ans = "XXX".to_string();
+            }
             println!("Part {}: {}, took {} s", idx + 1, ans, time.as_secs_f32());
         });
     }
