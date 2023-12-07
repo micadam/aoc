@@ -55,7 +55,7 @@ fn score_race(race: &Race) -> usize {
 }
 
 fn solve_quadratic(a: f64, b: f64, c: f64) -> (f64, f64) {
-    let discriminant = (b * b - 4.0 * a * c);
+    let discriminant = b * b - 4.0 * a * c;
     if discriminant < 0.0 {
         panic!("No real roots");
     }
