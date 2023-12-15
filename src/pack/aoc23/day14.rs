@@ -106,7 +106,7 @@ impl Solveable for Part2 {
         let mut current_step = 0;
         while current_step < total_tilts {
             let chars_tmp = chars.clone();
-            let dir_idx = current_step % dirs.len()
+            let dir_idx = current_step % dirs.len();
             if let Some(j) = seen.get(&(chars_tmp, dir_idx)) {
                 let cycle_len = current_step - j;
                 let remaining_cycles = (total_tilts - current_step) % cycle_len;
