@@ -60,7 +60,6 @@ fn get_vertices(instructions: &Vec<Instruction>) -> Vec<Vertex> {
 }
 
 fn get_area(vertices: &Vec<Vertex>) -> isize {
-    println!("{:?}", vertices.len());
     let area = vertices.windows(2).fold(0, |acc, p| match p {
         // the last part is to account for the half-pixels missed
         &[(a, b), (c, d)] => acc + a * d - b * c + (c - a).abs() + (d - b).abs() - 1,
