@@ -154,7 +154,13 @@ fn get_longest_hike(chars: &Vec<Vec<char>>, slopes: bool) -> usize {
             longest_path = longest_path.max(cur_len);
             continue;
         }
+        let candidates = graph.get(&pos).unwrap();
+        if let Some(edge) = candidates.iter().find(|e| e.end_node == end) {
+            longest_path = longest_path.max(cur_len + edge.length + 1);
+            continue; // if we can reach the end, we can't take any other path as it would block the end.
+        }
         for new_pos in graph.get(&pos).unwrap().iter() {
+            
             if !visited.contains(&new_pos.end_node) {
                 let mut new_visited = visited.clone();
                 new_visited.insert(new_pos.end_node);
