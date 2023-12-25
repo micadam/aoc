@@ -23,9 +23,6 @@ impl Vec3D {
     fn y(&self) -> BigInt {
         self.data.1.clone()
     }
-    fn z(&self) -> BigInt {
-        self.data.2.clone()
-    }
 }
 
 impl Add for Vec3D {
@@ -213,9 +210,7 @@ impl Solveable for Part1 {
 
 struct Part2;
 impl Solveable for Part2 {
-    fn solve(&self, lines: &Vec<String>) -> String {
-        let snowflakes = lines.iter().map(|s| parse_snowflake(s)).collect_vec();
-
+    fn solve(&self, _lines: &Vec<String>) -> String {
         // We need to find pos, vel s.t.
         // FORALL i=0..snowflakes.len() EXISTS t s.t. pos + vel * t = pos_i + vel_i * t (<=> t = (pos_i - pos) / (vel - vel_i))
         // pos.x + vel.x * t_i = pos_i.x + vel_i.x * t_i

@@ -1,17 +1,17 @@
-from sympy import symbols, Eq, solve
+from sympy import Symbol, symbols, Eq, solve
 
 with open("./input/aoc23/day24.txt") as f:
     lines = f.readlines()
   
 equations = []
 
-X, Y, Z, VX, VY, VZ = symbols("X Y Z VX VY VZ", real=True)
+X, Y, Z, VX, VY, VZ = symbols("X Y Z VX VY VZ", real=True, integer=True)
 
-for i, line in enumerate(lines):
+for i, line in enumerate(lines[:3]):
     pos, v = line.strip().split(" @ ")
     x_i, y_i, z_i = map(int, pos.split(", "))
     vx_i, vy_i, vz_i = map(int, v.split(", "))
-    T_I = symbols(f"T_{i}", negative=False, real=True, zero=False)
+    T_I = Symbol(f"T_{i}", negative=False, real=True, zero=False)
     equations.append(Eq((VX - vx_i) * T_I + X, x_i))
     equations.append(Eq((VY - vy_i) * T_I + Y, y_i))
     equations.append(Eq((VZ - vz_i) * T_I + Z, z_i))

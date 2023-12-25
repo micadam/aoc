@@ -24,9 +24,10 @@ mod day21;
 mod day22;
 mod day23;
 mod day24;
+mod day25;
 
 
 get_pack_fn!(
     "aoc23", day01, day02, day03, day04, day05, day06, day07, day08, day09, day10, day11, day12,
-    day13, day14, day15, day16, day17, day18, day19, day20, day21, day22, day23, day24
+    day13, day14, day15, day16, day17, day18, day19, day20, day21, day22, day23, day24, day25
 );
