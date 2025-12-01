@@ -1,6 +1,7 @@
 from typing import Dict, Type
 
 from aoc.day import Day
+
 from .day01 import Day1
 from .day02 import Day2
 from .day03 import Day3
@@ -29,4 +30,4 @@ DAYS: Dict[int, Type[Day]] = {
     12: Day12,
 }
 
-__all__ = ['DAYS']
+__all__ = ["DAYS"]

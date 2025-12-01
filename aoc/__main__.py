@@ -23,9 +23,7 @@ else:
 
 for day_number in day_numbers:
     if day_number not in DAYS_PER_YEAR[args.year]:
-        raise ValueError(
-            f"Day {day_number} does not exist for year {[args.year]}!"
-        )
+        raise ValueError(f"Day {day_number} does not exist for year {[args.year]}!")
 
 test = args.test_mode
 for day_number in day_numbers:
