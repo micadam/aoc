@@ -36,8 +36,14 @@ def get_grid_iter(
             yield (a, b) if row_first else (b, a)
 
 
-def get_grid_neighbours(Y, X, y, x):
-    for dy, dx in [(0, -1), (0, 1), (1, 0), (-1, 0)]:
+def get_grid_neighbours(Y, X, y, x, include_diag=False):
+    for dy, dx in [
+        (0, -1),
+        (0, 1),
+        (1, 0),
+        (-1, 0),
+        *([(-1, -1), (-1, 1), (1, -1), (1, 1)] if include_diag else []),
+    ]:
         ny, nx = y + dy, x + dx
         if 0 <= ny < Y and 0 <= nx < X:
             yield ny, nx
